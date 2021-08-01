@@ -1,7 +1,7 @@
 /*
 *
 *  NextJS Custom Document
-*  wraps _app and provides customizable global <head> and <body> sections
+*  wraps _app and provides a customizable global <head> and <body> sections
 * 
 */
 
