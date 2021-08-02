@@ -9,7 +9,7 @@
 import React from 'react';
 import Head from 'next/head';
 
-const url = 'http://localhost:3000/api/projects';
+const url = '/api/projects';
 
 export async function getStaticProps() {
 
@@ -48,4 +48,3 @@ export default function Index(props) {
     </div>
   )
 }
-
