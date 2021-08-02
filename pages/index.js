@@ -6,12 +6,12 @@
 * 
 */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 
 const url = 'http://localhost:3000/api/projects';
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
 
   const res = await fetch(url);
   const data = await res.json();
