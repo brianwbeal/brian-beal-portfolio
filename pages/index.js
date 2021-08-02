@@ -22,15 +22,18 @@ const GET_COLLECTION = gql`
 
 export default function Index() {
 
+  fetch('/api/projects')
+    .then(data => console.log(data))
+
   // utilize the useQuery hook passing in the GET_COLLECTION query, to return data
-  const { loading, error, data } = useQuery(GET_COLLECTION);
+  // const { loading, error, data } = useQuery(GET_COLLECTION);
 
   // check that data has loaded
-  if (loading) return "Loading...";
-  if (error) return "Error...";
-  if (!data) return "Not found..."
+  // if (loading) return "Loading...";
+  // if (error) return "Error...";
+  // if (!data) return "Not found..."
 
-  console.log(data);
+  // console.log(data);
 
   // once data has loaded, populate page
   return (
@@ -40,11 +43,11 @@ export default function Index() {
       <meta name="description" content="Portfolio website for software engineer Brian Beal" />
     </Head>
       <h1>index</h1>
-        {
+        {/* {
           data.allProjects.map((project) => {
             return <p key={project.id}>{project.name}</p>
           })
-        }
+        } */}
     </div>
   )
 }
