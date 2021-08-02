@@ -6,36 +6,33 @@
 * 
 */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
-import { gql } from 'apollo-boost';
-import { useQuery } from '@apollo/react-hooks';
 
-// define query to get all product data
-const GET_COLLECTION = gql`
-  query {
-    allProjects {
-      name
+const url = 'http://localhost:3000/api/projects';
+
+export async function getStaticProps(context) {
+
+  const res = await fetch(url);
+  const data = await res.json();
+
+  if (!data) {
+    return {
+      notFound: true
     }
   }
-`;
 
-export default function Index() {
+  return {
+    props: {
+      data
+    }
+  }
+}
 
-  fetch('/api/projects')
-    .then(data => console.log(data))
+export default function Index(props) {
 
-  // utilize the useQuery hook passing in the GET_COLLECTION query, to return data
-  // const { loading, error, data } = useQuery(GET_COLLECTION);
+  const projects = props.data;
 
-  // check that data has loaded
-  // if (loading) return "Loading...";
-  // if (error) return "Error...";
-  // if (!data) return "Not found..."
-
-  // console.log(data);
-
-  // once data has loaded, populate page
   return (
     <div>
     <Head>
@@ -43,11 +40,12 @@ export default function Index() {
       <meta name="description" content="Portfolio website for software engineer Brian Beal" />
     </Head>
       <h1>index</h1>
-        {/* {
-          data.allProjects.map((project) => {
-            return <p key={project.id}>{project.name}</p>
-          })
-        } */}
+      {
+        projects.map((project) => {
+          return <p key={project.id}>{project.name}</p>
+        })
+      }
     </div>
   )
 }
+
